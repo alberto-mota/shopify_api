@@ -49,7 +49,7 @@ module ShopifyAPI
 
       def pagination_link_headers
         @pagination_link_headers ||= ShopifyAPI::PaginationLinkHeaders.new(
-          ShopifyAPI::Base.connection.response["Link"]
+          ShopifyAPI::Base.connection.response.present? ? ShopifyAPI::Base.connection.response["Link"] : []
         )
       end
 
